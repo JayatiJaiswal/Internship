@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>check out centrality.</title>
+        <script type="text/javascript" src="../../dist/vivagraph.js"></script>
+	<script type="text/javascript" src="../../src/Algorithms/centrality.js"></script>
+  	<script type="text/javascript">
+        function main() 
+	{
+			//create an empty graph
+			var g = Viva.Graph.graph();
+			var svgGraphics = Viva.Graph.View.svgGraphics(), nodeSize = 24;
+//-----------------------------------------------------------------------------------------------------------------------------------------
+var a = '11/20/2012 1 919911111111 919922222222 125 11/20/2012 2 919911111111 919922222222 563 11/20/2012 3 919911111111 919911111133 12 11/20/2012 4 919911111111 919988888888 234 11/20/2012 5 919922222222 919922222111 567 11/20/2012 6 919922222222 919922222333 56  11/20/2012 7 919922222222 919922222444 75 11/20/2012 8 919933333333 919922222444 80 11/20/2012 9 919933333333 919911111111 246 11/20/2012 10 919933333333 919922222455 43 11/20/2012 11 919911111111 919922225555 678 11/20/2012 12 919911111111 919922222111 32 11/20/2012 13 919944444444 919911111111 25 11/20/2012 14 919955555555 919911111111 79 11/20/2012 15 919966666666 919922222222 125 11/20/2012 16 919977777777 919922222222 63 11/20/2012 17 919988888888 919955555555 235 11/20/2012 18 919911111122 919911111111 78 11/20/2012 19 919911111133 919933333333 25'; 
+			var arr = new Array();
+			var count= 0,cc=0;
+			var number='';
+			for(i=0;i<=a.length;i++)
+			{   if((a[i]<='9')&&(a[i]>='0'))
+                   	{
+					number += a[i];
+			  	}
+			  	else
+			  	{ 
+				arr[count] = parseInt(number.trim());
+				if(number !='')
+			    count++;
+				number='';
+			  	} 
+			}
+			for(i=4;i<count;i=i+7)
+			{
+				g.addLink(arr[i], arr[i+1], arr[i+2]);
+			}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+			var layout = Viva.Graph.Layout.forceDirected(g, {
+                        	springLength : 35,
+                        	springCoeff : 0.00055,
+                        	dragCoeff : 0.09,
+                        	gravity : -1
+                    	});
+
+			var svgGraphics = Viva.Graph.View.svgGraphics();
+                    	svgGraphics.node(function(node){
+                        	var Id = node.id;
+                        	var circle = Viva.Graph.svg('circle')
+                        	    .attr('r', 10)
+                        	    .attr('stroke', '#fff')
+                        	    .attr('stroke-width', '1.9px');
+                            
+                        	circle.append('title').text(node.id);                            
+                        	return circle;
+                            
+                    	}).placeNode(function(nodeUI, pos){
+                        	nodeUI.attr( "cx", pos.x).attr("cy", pos.y); 
+                    	});                    
+//-----------------------------------------------------------------------------------------------------------------------------------------	
+			var renderer = Viva.Graph.View.renderer(g, {
+				container : document.getElementById('container'),
+                    		graphics : svgGraphics
+                	});
+            		renderer.run();
+	}
+	</script>
+
+<style>
+
+#container
+{
+width:60%;
+height:100%;
+margin-top:5%;
+background-color:#fff; 
+position:absolute;
+}
+
+.contents
+{
+background-color:#fff;
+text-align:center; 
+width: 15%; 
+height:100%;
+display:inline-block;
+padding:10px;
+	
+}
+
+</style>
+</head>
+<body onload='main()'>
+
+<div class="header" style="background-color:#fff;text-align:center; width:100%;height:10% ">
+<h1>Social Network Analysis</h1>
+</div>
+<div id="one" class="contents" style="position:absolute; top:15%">
+</div>
+<div id="container" class="contents"  style="position:absolute; top:10%;left:18%">
+</div>
+
+<div id="two" style="background-color:#fff;width:100%;height:10%" >
+</div>
+</body>
+</html>

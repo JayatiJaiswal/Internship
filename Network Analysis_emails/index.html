@@ -1,0 +1,356 @@
+<html>
+    <head>
+
+	<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=0"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Social Network Analysis</title>
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+	<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" 		        /></noscript> 
+
+       <style type="text/css">
+
+        #header-left-container{float:left;width:30%;}
+        #header-right-container{float:right;width:69%;}
+
+    .selector {
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-top-left-radius: 10px;
+	background-color:#C0C0C0;
+	layer-background-color:#C0C0C0;
+        width: 200px;
+	height: 80px;
+	
+    }
+
+   .selector1 {
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-top-left-radius: 10px;
+	background-color:#C0C0C0;
+	layer-background-color:#C0C0C0;
+        width: 200px;
+	height: 80px;
+	
+       
+    }
+
+    .rad
+    {
+        float: centre;
+        width: 250px;
+	height: 55px;
+        margin-left:10px;
+    }
+
+    .opt {
+	
+	float: right;
+        width: 200px;
+	height: 500px;  
+    }
+
+    .opt_out {
+	
+	float: left;
+        width: 600px;
+	height: 550px;
+    }
+    
+    .hidden{
+    	visibility: hidden;
+    }
+    
+    </style>
+    </head>
+    <body bgcolor="black">
+    <div class="opt_out" color="blue" >
+      <div>
+
+        <div id="header-left-container" class="rad" color="blue">
+        
+	  <img id="loading-image" style='width:250px; height:80px' src="imgbanner.png" alt="Loading..." />
+	
+        </div>
+        
+	<div id="header-right-container" class="rad">
+        
+           
+        
+        </div>
+
+      </div>
+       <div id="header1">
+       <hr noshade size=10 width=1200 color=darkblue align="center" style="margin-left:10px" > 
+       </div>
+
+    
+
+       <div id="header1">
+
+
+        <div id="header-left-container" class="opt">
+	  <p style="font-family:arial;color:#8AA8BD;font-size:20px; align="center";>
+          <br> &nbsp&nbsp  Network Analysis
+          </p>
+	<hr noshade size=3 width=210 align=center color=darkblue align="center"         	        style="margin-left:10px"> 
+      
+	<div class="codrops-top">
+
+            </div><!--/ Codrops top bar -->
+			
+	<section class="main"> 
+
+ 	<div style="margin-top:20px" style="margin-left:5px;border:solid thick #000;">
+         
+	</div> <!--div class="selector1 hidden" style="margin-left:5px;border:solid thick #00;" class="selector">
+         <p><br><input type="file" name="uploadField" /></br></p>
+         <p><br>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value=" Submit " onclick=getStyle("visible")></p>
+	</div-->
+	<div class="wrapper-demo">
+
+	<div id="dd" class="wrapper-dropdown-3" tabindex="1" style="position:absolute; margin-top:-40px" style="margin-left:70px">
+
+	<span>Algorithm</span>
+	<ul class="dropdown">
+	<li><a href="#" OnClick="EntireNetwork();">Network Graph</a></li>
+	<li><a href="#" OnClick="DegreeGraph();">Threat Network</a></li>
+	<li><a href="#" OnClick="IndividualGraph();">Individual's Graph</a></li>
+	<li><a href="#" OnClick="Compare();">Watch List</a></li>
+	<li><a href="#" OnClick="Sentrecieved();">Top Mailers</a></li>
+	<li><a href="#" OnClick="PeopleList();">Top Influencers</a></li>
+        <li><a href="#" OnClick="CompleteReport();">Complete Report</a></li>
+
+	     </ul>
+	       </div>
+		</div>
+		</section>
+	        </div>
+
+    </div>
+<div id="myField" class="selector1 hidden" style="margin-left:10px; margin-top:200px;">
+
+</div>
+
+ <div id="ld_button" class="button_wrap hidden">
+   
+            <!--a class="button_aLeft" id="button_aLeft"><span>Graph</span></a>
+            <a class="button_bLeft slidebttn" id="button_bLeft" OnClick="abc()">Load</a-->
+        </div>
+<div id="selectdiv" class="selector1 hidden" style="width:300px; height:146px; position:absolute;left:1100px;top:175px">
+
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+</div>
+
+<div id="centerbox" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="graphEntireNetwork.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_degreeGraph" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="degreeGraph.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_IndividualGraph" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray"><a href=''index.html'>back</a>
+<iframe src="main.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_CompleteReport" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="degreeall.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_SentRecieved" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="msgdetails.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_PeopleList" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="mailsenttotal.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="centerbox_Compare" class="selector1 hidden" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<iframe src="compareValue.php" width="900" height="486px" frameborder="no" scrolling="yes" style="border-width:2px; border-color:gray; background:#FFF; border-style:solid Gray;">
+ </iframe>
+</div>
+
+<div id="myFieldOne" class="selector1 hidden" style="position:absolute; top:30%; left:86%; " >
+</div>
+<div id="middle" style="position:absolute; top:30%; left:15%; background-color:red;" >
+</div>
+<div id="firstimage" align="center;" style="width:900px; height:486px; position:absolute;left:250px;top:150px; border:1px solid Gray">
+<img src='img3.jpg' style="width:900px; height:486px;"  >
+</div>
+</body> 
+     
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+		<script type="text/javascript">
+			function DropDown(el) {
+				this.dd = el;
+				this.placeholder = this.dd.children('span');
+				this.opts = this.dd.find('ul.dropdown > li');
+				this.val = '';
+				this.index = -1;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+ 
+					
+					obj.opts.on('click',function(){
+						var opt = $(this);
+						obj.val = opt.text();
+						obj.index = opt.index();
+						obj.placeholder.text(obj.val);
+					});
+				},
+				getValue : function() {
+					return this.val;
+				},
+				getIndex : function() {
+					return this.index;
+				}
+			}
+ 
+			$(function() {
+ 
+				var dd = new DropDown( $('#dd').addClass('active') );
+ 
+				
+ 
+			});
+
+//function load()
+//{
+//document.getElementById("myField").style.visibility = "hidden";
+//document.getElementById("ld_button").style.visibility = "hidden";
+//}
+
+function getStyle(visibility)
+{
+document.getElementById("myField").style.visibility = visibility;
+}
+
+function EntireNetwork()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "visible";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+
+function DegreeGraph()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "visible";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+function IndividualGraph()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "visible";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+function CompleteReport()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "visible";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+function Sentrecieved()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "visible";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+function PeopleList()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "visible";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "hidden";
+}
+
+function Compare()
+{
+document.getElementById("firstimage").style.visibility = "hidden";
+document.getElementById("ld_button").style.visibility = "visible";
+document.getElementById("centerbox").style.visibility = "hidden";
+document.getElementById("centerbox_degreeGraph").style.visibility = "hidden";
+document.getElementById("centerbox_IndividualGraph").style.visibility = "hidden";
+document.getElementById("centerbox_CompleteReport").style.visibility = "hidden";
+document.getElementById("centerbox_SentRecieved").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("centerbox_PeopleList").style.visibility = "hidden";
+document.getElementById("myField").style.visibility = "hidden";
+document.getElementById("centerbox_Compare").style.visibility = "visible";
+}
+
+
+		</script>
+
+
+   
+  </html>

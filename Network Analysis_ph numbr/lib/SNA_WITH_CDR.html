@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>check out centrality.</title>
+        <script type="text/javascript" src="vivagraph.js"></script>
+	<script type="text/javascript" src="centrality.js"></script>
+  	<script type="text/javascript">
+        function main() 
+	{
+			//create an empty graph
+			var g = Viva.Graph.graph();
+			var svgGraphics = Viva.Graph.View.svgGraphics(), nodeSize = 24;
+//-----------------------------------------------------------------------------------------------------------------------------------------
+	
+var d3Sample = function(){
+var a = '11/20/2012 1 919911111111 919922222222 125 11/20/2012 2 919911111111 919922222222 563 11/20/2012 3 919911111111 919911111133 12 11/20/2012 4 919911111111 919988888888 234 11/20/2012 5 919922222222 919922222111 567 11/20/2012 6 919922222222 919922222333 56  11/20/2012 7 919922222222 919922222444 75 11/20/2012 8 919933333333 919922222444 80 11/20/2012 9 919933333333 919911111111 246 11/20/2012 10 919933333333 919922222455 43 11/20/2012 11 919911111111 919922225555 678 11/20/2012 12 919911111111 919922222111 32 11/20/2012 13 919944444444 919911111111 25 11/20/2012 14 919955555555 919911111111 79 11/20/2012 15 919966666666 919922222222 125 11/20/2012 16 919977777777 919922222222 63 11/20/2012 17 919988888888 919955555555 235 11/20/2012 18 919911111122 919911111111 78 11/20/2012 19 919911111133 919933333333 25'; 
+			var arr = new Array();
+			var count= 0,cc=0;
+			var number='';
+			for(i=0;i<=a.length;i++)
+			{       if((a[i]<='9')&&(a[i]>='0'))
+                   	{
+					number += a[i];
+			  	}
+			  	else
+			  	{ 
+		    		arr[count] = parseInt(number.trim());
+					if(number !='')
+		        	count++;
+					number='';
+			  	} 
+			}
+			for(i=4;i<count;i=i+7)
+			{
+				g.addLink(arr[i], arr[i+1], arr[i+2]);
+			}
+		
+                    	return g;
+                };
+//-----------------------------------------------------------------------------------------------------------------------------------------
+			var colors = [
+                        "#1f77b4", "#aec7e8",
+                        "#ff7f0e", "#ffbb78",
+                        "#2ca02c", "#98df8a",
+                        "#d62728", "#ff9896",
+                        "#9467bd", "#c5b0d5",
+                        "#8c564b", "#c49c94",
+                        "#e377c2", "#f7b6d2",
+                        "#7f7f7f", "#c7c7c7",
+                        "#bcbd22", "#dbdb8d",
+                        "#17becf", "#9edae5"
+                        ];
+
+			var size = [
+                        20,18,16,14,12,10,8,6
+                        ];
+
+
+            var example = function() {
+                var graph = d3Sample(),
+                        communities = Viva.Graph.community().slpa(graph, 60, 0.30);            
+            var layout = Viva.Graph.Layout.forceDirected(graph, {
+                        springLength : 35,
+                        springCoeff : 0.00055,
+                        dragCoeff : 0.09,
+                        gravity : -10
+                    });
+                    
+                    var svgGraphics = Viva.Graph.View.svgGraphics();
+                    svgGraphics.node(function(node) {
+                    var groupId = node.communities[0].name % colors.length;
+				    var circle = Viva.Graph.svg('circle')
+                            .attr('r',7 )
+                            .attr('stroke', '#fff')
+                            .attr('stroke-width', '1.5px')
+			    			.attr("fill", colors[node.id==11 ?  1 : groupId - 1 ]);
+  
+                            circle.append('title').text('id   : '+node.id);
+                            return circle;
+                            
+                    	}).placeNode(function(nodeUI, pos){
+                        	nodeUI.attr( "cx", pos.x).attr("cy", pos.y); 
+                    	});
+                    
+                    	svgGraphics.link(function(link){
+                        	return Viva.Graph.svg('line')
+                                .attr('stroke', '#c0c0c0')
+                                .attr('stroke-width', Math.sqrt(link.data));
+                    	});
+
+                    	var renderer = Viva.Graph.View.renderer(graph, {
+                        	container : document.getElementById('container'),
+                        	layout : layout,
+                        	graphics : svgGraphics,
+                        	prerender: 0,
+                        	renderLinks : true
+                    	});
+                    
+                    	renderer.run(500);
+                       	g = graph;
+//-----------------------------------------------------------------------------------------------------------------------------------------
+			//in and out degree centrality computation
+			var cd = Viva.Graph.centrality().degreeCentrality(g,'both');
+			var a ='';
+			var cdb = new Array();
+			for(var count=0 ; count<cd.length ; count++)
+			{ 
+				a ='';
+				for (var i in cd[count])
+				{
+					a += i +'&nbsp:&nbsp'+cd[count][i]+'&nbsp&nbsp';
+				}
+				cdb[count] = String(a); 
+			}
+			
+//-----------------------------------------------------------------------------------------------------------------------------------------
+			//in and out degree centrality computation
+			var cd2 = Viva.Graph.centrality().degreeCentrality(g,'in');
+			var a ='';
+			var cdc = new Array();
+			for(var count=0 ; count<cd2.length ; count++)
+			{ 
+				a ='';
+				for (var i in cd2[count])
+				{
+					a += i +'&nbsp:&nbsp'+cd2[count][i]+'&nbsp&nbsp';
+				}
+				cdc[count] = String(a); 
+			}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+			//in and out degree centrality computation
+			var cd3 = Viva.Graph.centrality().degreeCentrality(g,'out');
+			var a ='';
+			var cdd = new Array();
+			for(var count=0 ; count<cd3.length ; count++)
+			{ 
+				a ='';
+				for (var i in cd3[count])
+				{
+					a += i +'&nbsp:&nbsp'+cd3[count][i]+'&nbsp&nbsp';
+				}
+				cdd[count] = String(a); 
+			}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+			var bet = '<h4>'+'BETWEENESS CENTRALITY'+'</h4>';
+			var cd1 = Viva.Graph.centrality().betweennessCentrality(g,'');			
+			var cd1b = new Array();
+			for(var count=0 ; count<cd1.length ; count++)
+			{ 
+				a ='';
+				for (var i in cd1[count])
+				{
+					a += i +'&nbsp:&nbsp'+cd1[count][i]+'&nbsp&nbsp';
+				}
+				cd1b[count] = String(a); 
+			}
+			var listcd = "<table border='1' align='right'><tr><td><h4>IN DEGREE</h4></td><td><h4>OUT DEGREE</h4></td><td><h4>DEGREE CENTRALITY</h4></td><td><h4>BETWEENESS CENTRALITY</h4></td></tr>";
+ 			for(i=0; i<cdb.length; i++)
+			{
+ 				listcd +="<tr><td>"+cdc[i]+"</td><td>"+cdd[i]+"</td><td>"+cdb[i]+"</td><td>"+cd1b[i]+"</td></tr>";
+ 			}
+			listcd +="</table>";
+ 			document.getElementById("container").innerHTML=listcd;
+			
+//-----------------------------------------------------------------------------------------------------------------------------------------
+		}();
+	}
+	</script>
+
+<style>
+
+#container
+{
+width:60%;
+height:100%;
+margin-top:5%;
+background-color:#fff; 
+position:absolute;
+}
+
+.contents
+{
+background-color:#fff;
+text-align:center; 
+width: 15%; 
+height:100%;
+display:inline-block;
+padding:10px;
+	
+}
+
+</style>
+</head>
+<body onload='main()'>
+
+<div class="header" style="background-color:#fff;text-align:center; width:100%;height:10% ">
+<h1>Network Analysis</h1>
+</div>
+<div id="one" class="contents" style="position:absolute; top:15%">
+</div>
+<div id="container" class="contents"  style="position:absolute; top:10%;left:18%">
+</div>
+
+<div id="two" style="background-color:#fff;width:100%;height:10%" >
+</div>
+</body>
+</html>
